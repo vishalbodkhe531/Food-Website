@@ -16,20 +16,18 @@ const GateRecipe = async () => {
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
     container.innerHTML = '';
-
     const responce = await GateRecipe(input.value);
-    let arr = [responce.meals];
-    for (let i = 0; i <= 7; i++) {
+    responce.meals.forEach((el,index) =>{
         container.innerHTML += (`
            <div id = "search-content">
               <div class="Title-section">
-                   <img src="${responce.meals[i].strMealThumb}" id = "img"/>
-                    <h3>${responce.meals[i].strMeal}</h3>
-                    <div class="paragraph">${responce.meals[i].strInstructions}</div>
+                   <img src="${responce.meals[index].strMealThumb}" id = "img"/>
+                    <h3>${responce.meals[index].strMeal}</h3>
+                    <div class="paragraph">${responce.meals[index].strInstructions}</div>
               </div>
             </div>   
        `)
-    }
+    })
     input.value = '';
 });
 
