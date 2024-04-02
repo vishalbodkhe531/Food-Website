@@ -15,10 +15,8 @@ const GateRecipe = async () => {
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const responce = await GateRecipe(input.value);
-    console.log(responce);
     console.log(responce.meals[0]);
-    console.log(responce.meals[0].strYoutube)
-    container.innerHTML += (`
+    container.innerHTML = (`
     <div id = "search-content">
       <div class="Title-section">
            <img src="${responce.meals[0].strMealThumb}" id = "img"/>
