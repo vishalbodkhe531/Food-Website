@@ -14,11 +14,13 @@ const GateRecipe = async () => {
 }
 
 form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    container.innerHTML = '';
-    const responce = await GateRecipe(input.value);
-    responce.meals.forEach((el,index) =>{
-        container.innerHTML += (`
+   try {
+     e.preventDefault();
+       if (input.value !== "") {
+         container.innerHTML = "";
+         const responce = await GateRecipe(input.value);
+         responce.meals.forEach((el, index) => {
+           container.innerHTML += `
            <div id = "search-content">
               <div class="Title-section">
                    <img src="${responce.meals[index].strMealThumb}" id = "img"/>
@@ -26,14 +28,11 @@ form.addEventListener("submit", async (e) => {
                     <div class="paragraph">${responce.meals[index].strInstructions}</div>
               </div>
             </div>   
-       `)
-    })
-    input.value = '';
-});
-
-let Theme = document.querySelector("#check");
-const body = document.querySelector("body");
-Theme.addEventListener("click", () => {
-    body.classList.toggle("light-mode")
-    console.log(body.classList.toggle("light-mode"))
+       `;
+         });
+         input.value = "";
+       }
+   } catch (error) {
+    alert(error)
+   }
 });
